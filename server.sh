@@ -110,7 +110,7 @@ read_ram_usage() {
 #Функция сбора информации об объеме памяти на диске (собирается инфа по каждому диску, потом ссумируется )
 read_memory_usage(){
 #    memory_total=$(df -m | awk '/^\/dev\// {sum += $2} END {print sum}') #размер по тому сколько примонтировано в общем
-    memory_total=$(lsblk | awk '/^sd/ {sum += $4} END {print sum/1024}') #размер по дискам всего
+    memory_total=$(lsblk -b | awk '/^sd/ {sum += $4} END {print sum/(1024*1024)}') #размер по дискам всего
     memory_used=$(df | awk '/^\/dev\// {sum += $3} END {print sum}')
     memory_avilable=$(df | awk '/^\/dev\// {sum += $4} END {print sum}')
 
