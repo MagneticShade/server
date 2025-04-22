@@ -135,7 +135,7 @@ done
 
 json_output=$(cat <<EOF
 {
-  "Token": "f643dd8211cf2ac6fcc286caecc39aa69e2a1d6d38bcb66dd78e399ab664991f",
+  "Token": f643dd8211cf2ac6fcc286caecc39aa69e2a1d6d38bcb66dd78e399ab664991f,
   "data": {
       "RAM": {
           "Total": ${ram_result[0]},
@@ -154,8 +154,7 @@ EOF
 )
 
 url='https://b24.dev.skillline.ru/skillline.monitoring/api/monitoring.php'
-echo $json_output;
-echo "shi";
+
 curl -X POST -H "Content-Type: application/json" -d "$json_output" $url
 
 
