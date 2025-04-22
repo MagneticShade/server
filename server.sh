@@ -96,9 +96,9 @@ read_cpu_usage() {
 
 #Функция сбора информации об ОЗУ
 read_ram_usage() {
-  ram_total=$(free | awk '/^Mem:/ {print $2}')
-  ram_used=$(free | awk '/^Mem:/ {print $3}')
-  ram_avilable=$(free | awk '/^Mem:/ {print $7}')
+  ram_total=$(free --mega | awk '/^Mem:/ {print $2}')
+  ram_used=$(free --mega | awk '/^Mem:/ {print $3}')
+  ram_avilable=$(free --mega | awk '/^Mem:/ {print $7}')
 
   ram_result[0]=$ram_total
   ram_result[1]=$ram_used
@@ -108,11 +108,12 @@ read_ram_usage() {
 }
 
 #Функция сбора информации об объеме памяти на диске (собирается инфа по каждому диску, потом ссумируется )
+
 read_memory_usage(){
 #    memory_total=$(df -m | awk '/^\/dev\// {sum += $2} END {print sum}') #размер по тому сколько примонтировано в общем
     memory_total=$(lsblk -b | awk '/^sd/ {sum += $4} END {print sum/(1024*1024)}') #размер по дискам всего
-    memory_used=$(df | awk '/^\/dev\// {sum += $3} END {print sum}')
-    memory_avilable=$(df | awk '/^\/dev\// {sum += $4} END {print sum}')
+    memory_used=$(df -BM| awk '/^\/dev\// {sum += $3} END {print sum}')
+    memory_avilable=$(df -BM| awk '/^\/dev\// {sum += $4} END {print sum}')
 
     memory_result[0]=$memory_total
     memory_result[1]=$memory_used
