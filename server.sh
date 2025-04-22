@@ -135,7 +135,7 @@ done
 
 json_output=$(cat <<EOF
 {
-  "Token": f643dd8211cf2ac6fcc286caecc39aa69e2a1d6d38bcb66dd78e399ab664991f,
+  "Token": "f643dd8211cf2ac6fcc286caecc39aa69e2a1d6d38bcb66dd78e399ab664991f",
   "data": {
       "RAM": {
           "Total": ${ram_result[0]},
